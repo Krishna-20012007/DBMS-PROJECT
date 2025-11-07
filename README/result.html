@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Query Result</title>
+</head>
+<body>
+    <h2>Result</h2>
+    <table border="1" cellpadding="5">
+        {% for row in result %}
+        <tr>
+            {% for value in row %}
+            <td>{{ value }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    <a href="/">⬅ Back</a>
+</body>
+</html>
+
+

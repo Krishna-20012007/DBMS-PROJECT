@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TV Management Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      height: 100vh;
+      background: url('mis.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      overflow: hidden;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.6);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 40px;
+      border-radius: 20px;
+      backdrop-filter: blur(6px);
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+      width: 90%;
+      max-width: 1000px;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 30px;
+      color: white;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+      letter-spacing: 1px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      justify-items: center;
+      padding: 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 16px;
+      padding: 20px;
+      width: 200px;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      color: white;
+      font-weight: 600;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      background: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    /* Fade-in animation for smooth entry */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Flash messages styling */
+    .flash {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 10px;
+      margin-top: 15px;
+      border-radius: 8px;
+      list-style: none;
+    }
+
+    .flash li {
+      margin: 5px 0;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="overlay"></div>
+
+  <div class="container">
+    <h1>📺 TV Management Dashboard</h1>
+
+    <div class="menu">
+      <a href="/channels"><div class="card">📡 Channels</div></a>
+      <a href="/genres"><div class="card">🎭 Genres</div></a>
+      <a href="/shows"><div class="card">🎬 Shows</div></a>
+      <a href="/castcrew"><div class="card">👥 Cast & Crew</div></a>
+      <a href="/marketing"><div class="card">💼 Marketing</div></a>
+      <a href="/ads"><div class="card">📢 Advertisements</div></a>
+      <a href="/episodes"><div class="card">🎞️ Episodes</div></a>
+      <a href="/upcoming"><div class="card">⏳ Upcoming Shows</div></a>
+      <a href="/queries"><div class="card">🧠 Complex Queries</div></a>
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flash">
+          {% for m in messages %}
+            <li>{{ m }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <div class="footer">
+      <p>© 2025 TV Management System | Designed by Krishna, Nila, Samyuktha</p>
+    </div>
+  </div>
+
+</body>
+</html>

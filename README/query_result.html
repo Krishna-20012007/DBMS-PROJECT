@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Query Result</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('q.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      min-height: 100vh;
+      padding: 40px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: #ffcc70;
+      text-shadow: 0 0 10px #000;
+    }
+
+    table {
+      width: 80%;
+      margin: 30px auto;
+      border-collapse: collapse;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    th, td {
+      padding: 12px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    tr:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transition: 0.3s ease;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 10px 25px;
+      background: #ffcc70;
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 25px;
+      transition: 0.3s;
+    }
+
+    a:hover {
+      background: #fff;
+      color: #333;
+      box-shadow: 0 0 10px #ffcc70;
+    }
+
+    @media (max-width: 768px) {
+      table {
+        width: 95%;
+        font-size: 14px;
+      }
+
+      h2 {
+        font-size: 1.8em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <h2>Query: {{ name }}</h2>
+    <table>
+      {% for r in rows %}
+      <tr>
+        {% for c in r %}
+        <td>{{ c }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </table>
+    <a href="/queries">Back</a>
+  </div>
+</body>
+</html>

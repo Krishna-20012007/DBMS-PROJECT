@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Advertisement Management</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: url('ads.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color:white;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.5);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .container {
+  position: relative;
+  z-index: 1;
+  width: 90%;
+  max-width: 950px;
+  background: transparent; /* translucent */
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  padding: 30px 40px;
+  backdrop-filter: blur(3px);  /* frosted glass effect */
+}
+
+
+    h2 {
+      text-align: center;
+      color: white;
+      margin-bottom: 25px;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: border-color 0.3s;
+    }
+
+    input:focus {
+      border-color: palevioletred;
+      outline: none;
+    }
+
+    button {
+      grid-column: 1 / -1;
+      background: plum;
+      color: white;
+      border: solid;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: palevioletred;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: plum;
+      color: white;
+    }
+
+    tr:hover {
+      background-color: #f1f2f6;
+      transition: 0.3s;
+    }
+
+    a {
+      color: plum;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    a:hover {
+      color: palevioletred;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      background-color: plum;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 8px;
+      transition: background-color 0.3s;
+    }
+
+    .back:hover {
+      background-color: palevioletred;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="overlay"></div>
+
+  <div class="container">
+    <h2>Advertisement Management</h2>
+    
+    <form action="/ads/add" method="post">
+      <input name="ad_id" placeholder="Ad ID" required>
+      <input name="channel_id" type="number" placeholder="Channel ID">
+      <input name="company_name" placeholder="Company Name">
+      <input name="num_of_ads" type="number" placeholder="Number of Ads">
+      <input name="duration" placeholder="Duration (e.g. 00:01:30)">
+      <button type="submit">Add Advertisement</button>
+    </form>
+
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Channel</th>
+        <th>Company</th>
+        <th>No. of Ads</th>
+        <th>Duration</th>
+        <th>Actions</th>
+      </tr>
+      {% for a in ads %}
+      <tr>
+        <td>{{ a.ad_id }}</td>
+        <td>{{ a.channel_name }}</td>
+        <td>{{ a.company_name }}</td>
+        <td>{{ a.num_of_ads }}</td>
+        <td>{{ a.duration }}</td>
+        <td><a href="/ads/delete/{{ a.ad_id }}">🗑 Delete</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <a class="back" href="/">⬅ Back</a>
+  </div>
+
+</body>
+</html>

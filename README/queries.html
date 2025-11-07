@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Query Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: url('queries.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.5);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      width: 90%;
+      max-width: 950px;
+      background: transparent;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      padding: 40px;
+      backdrop-filter: blur(3px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    h2 {
+      text-align: center;
+      color: white;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+      margin-bottom: 25px;
+      font-size: 30px;
+      letter-spacing: 1px;
+    }
+
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    button {
+      background: rgba(255, 255, 255, 0.8);
+      color: black;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 18px;
+      cursor: pointer;
+      font-size: 15px;
+      min-width: 260px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+      transition: all 0.3s ease-in-out;
+      transform: scale(1);
+    }
+
+    button:hover {
+      background: #dcdcdc;
+      transform: scale(1.07);
+      box-shadow: 0 5px 12px rgba(0,0,0,0.3);
+    }
+
+    button:active {
+      transform: scale(0.97);
+      background: gray;
+      color: white;
+    }
+
+    .back {
+      display: block;
+      width: fit-content;
+      margin: 25px auto 0;
+      text-decoration: none;
+      background-color: gainsboro;
+      color: black;
+      padding: 10px 20px;
+      border-radius: 8px;
+      transition: background-color 0.3s;
+      text-align: center;
+    }
+
+    .back:hover {
+      background-color: gray;
+      color: white;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="overlay"></div>
+
+  <div class="container">
+    <h2>📊 Pre-defined Complex Queries</h2>
+
+    <form action="/run_named_query" method="post">
+      <button name="query_name" value="avg_trp_per_genre">Avg TRP per Genre</button>
+      <button name="query_name" value="top3_expensive_per_channel">Top 3 Expensive Shows per Channel</button>
+      <button name="query_name" value="ad_duration_per_channel">Ad Duration per Channel</button>
+
+      <button name="query_name" value="shows_trp_above9_cost_below_avg">Shows TRP > 9 & Cost < Avg</button>
+      <button name="query_name" value="directors_no_show_below5">Directors with No Show < 5 TRP</button>
+      <button name="query_name" value="channel_biggest_cost_diff">Channel with Biggest Cost Diff</button>
+
+      <button name="query_name" value="channel_summary_view">Channel Summary View</button>
+      <button name="query_name" value="generate_weekly_schedule">Generate Weekly Schedule (Demo)</button>
+      <button name="query_name" value="shows_short_high_trp">Short Duration & High TRP Shows</button>
+
+      <button name="query_name" value="trp_above_avg">TRP Above Average</button>
+      <button name="query_name" value="cost_per_genre_channel">Cost per Genre Across Channels</button>
+      <button name="query_name" value="directors_multiple_genres">Directors with Multiple Genres</button>
+
+      <button name="query_name" value="directors_also_actors_shows">Directors Who Are Also Actors</button>
+      <button name="query_name" value="avg_episode_duration_per_season">Avg Episode Duration per Season</button>
+      <button name="query_name" value="upcoming_replacing_low_trp">Upcoming Replacing Low TRP Shows</button>
+
+      <button name="query_name" value="prevent_trp_trigger_test">TRP Trigger Test (Will Error)</button>
+      <button name="query_name" value="add_show_with_validation">Add Show with Validation (Demo)</button>
+      <button name="query_name" value="top_3_shows">Top 3 Shows</button>
+      <button name="query_name" value="avg_trp_per_channel">Average TRP per Channel</button>
+      <button name="query_name" value="prime_time_shows">Prime Time Shows</button>
+      <button name="query_name" value="top_director">Top Director</button>
+      <button name="query_name" value="top_expensive_channel">Top Expensive Channel</button>
+    </form>
+
+    <a class="back" href="/">⬅ Back</a>
+  </div>
+
+</body>
+</html>

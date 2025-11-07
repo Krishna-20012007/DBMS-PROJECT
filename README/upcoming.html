@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upcoming Shows</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: url('upcoming.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.5);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      width: 90%;
+      max-width: 900px;
+      background: transparent;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      padding: 30px 40px;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    h2 {
+      text-align: center;
+      color: white;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+      margin-bottom: 25px;
+      font-size: 28px;
+      letter-spacing: 1px;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.8);
+      transition: border-color 0.3s;
+    }
+
+    input:focus {
+      border-color: gray;
+      outline: none;
+    }
+
+    button {
+      background: gainsboro;
+      color: black;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: gray;
+      color: white;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+      margin-top: 15px;
+      color: #2d3436;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    th {
+      background-color: gainsboro;
+      color: black;
+    }
+
+    tr:hover {
+      background-color: rgba(200, 200, 255, 0.3);
+      transition: 0.3s;
+    }
+
+    a {
+      color: black;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    a:hover {
+      color: gray;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      background-color: gainsboro;
+      color: black;
+      padding: 10px 18px;
+      border-radius: 8px;
+      transition: background-color 0.3s;
+    }
+
+    .back:hover {
+      background-color: gray;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="overlay"></div>
+
+  <div class="container">
+    <h2>Upcoming Shows</h2>
+
+    <form action="/upcoming/add" method="post">
+      <input name="upcoming_id" type="number" placeholder="Upcoming ID" required>
+      <input name="channel_id" type="number" placeholder="Channel ID" required>
+      <input name="title" placeholder="Title" required>
+      <input name="replacement_show_id" type="number" placeholder="Replacement Show ID">
+      <input name="director_id" type="number" placeholder="Director ID">
+      <button type="submit">Add</button>
+    </form>
+
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Channel</th>
+        <th>Title</th>
+        <th>Replacement</th>
+        <th>Director</th>
+        <th>Actions</th>
+      </tr>
+      {% for u in upcoming %}
+      <tr>
+        <td>{{ u.upcoming_id }}</td>
+        <td>{{ u.channel_name }}</td>
+        <td>{{ u.title }}</td>
+        <td>{{ u.replacement_show_id }}</td>
+        <td>{{ u.director_id }}</td>
+        <td><a href="/upcoming/promote/{{ u.upcoming_id }}">Promote</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <a class="back" href="/">⬅ Back</a>
+  </div>
+
+</body>
+</html>
